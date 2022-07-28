@@ -21,7 +21,7 @@ where
 
 import Data.Aeson (KeyValue ((.=)), Value, object)
 import Data.Text (Text)
-import Putio.API.File (ListContRes, ListRes, SearchRes, SortBy)
+import Putio.API.File (ListContRes, ListRes, SearchRes, SortBy, UrlRes)
 import Putio.Client (fileClient)
 import Putio.Core
 import Putio.Data.File (File (parent_id))
@@ -37,6 +37,7 @@ _createFolder :: Value -> Maybe Token -> ClientM (Wrap File)
 _rename :: Value -> Maybe Token -> ClientM ()
 _move :: Value -> Maybe Token -> ClientM ()
 _convertMp4 :: Integer -> Maybe Token -> ClientM ()
+_url :: Integer -> Maybe Token -> ClientM UrlRes
 _list ::
   Maybe Integer ->
   Maybe Integer ->
@@ -50,7 +51,8 @@ _list ::
   Maybe Bool ->
   Maybe Token ->
   ClientM ListRes
-_list :<|> _listCont :<|> _search :<|> _searchCont :<|> _createFolder :<|> _rename :<|> _move :<|> _convertMp4 = fileClient
+
+_list :<|> _listCont :<|> _search :<|> _searchCont :<|> _createFolder :<|> _rename :<|> _move :<|> _convertMp4 :<|> _url = fileClient
 
 data ListArgs = Args
   { parent_id :: Maybe Integer,
@@ -92,3 +94,6 @@ move fileIds parentId = inPutioM . _move $ object ["file_ids" .= fileIds, "paren
 
 convert :: Integer -> PutioM ()
 convert fileId = inPutioM $ _convertMp4 fileId
+
+url :: Integer -> PutioM UrlRes
+url fileId = inPutioM $ _url fileId
