@@ -10,6 +10,7 @@ module Putio.File
     rename,
     move,
     convert,
+    url,
     ListArgs(..),
     withArgs,
     ListRes (..),
