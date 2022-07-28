@@ -57,8 +57,8 @@ type Api =
       :> "mp4"
       :> AuthHeader
       :> Post '[JSON] ()
-    :<|> "url"
-      :> ReqBody '[JSON] Integer
+    :<|> Capture "id" Integer
+      :> "url"
       :> AuthHeader
       :> Get '[JSON] UrlRes
 
