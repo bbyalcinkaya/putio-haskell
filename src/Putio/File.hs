@@ -11,6 +11,7 @@ module Putio.File
     move,
     convert,
     url,
+    delete,
     ListArgs(..),
     withArgs,
     ListRes (..),
@@ -39,6 +40,7 @@ _rename :: Value -> Maybe Token -> ClientM ()
 _move :: Value -> Maybe Token -> ClientM ()
 _convertMp4 :: Integer -> Maybe Token -> ClientM ()
 _url :: Integer -> Maybe Token -> ClientM UrlRes
+_delete :: [Integer] -> Maybe Token -> ClientM ()
 _list ::
   Maybe Integer ->
   Maybe Integer ->
@@ -53,7 +55,8 @@ _list ::
   Maybe Token ->
   ClientM ListRes
 
-_list :<|> _listCont :<|> _search :<|> _searchCont :<|> _createFolder :<|> _rename :<|> _move :<|> _convertMp4 :<|> _url = fileClient
+_list :<|> _listCont :<|> _search :<|> _searchCont :<|> _createFolder :<|> _rename :<|> _move :<|> _convertMp4 :<|> _url
+  :<|> _delete = fileClient
 
 data ListArgs = Args
   { parent_id :: Maybe Integer,
@@ -98,3 +101,6 @@ convert fileId = inPutioM $ _convertMp4 fileId
 
 url :: Integer -> PutioM UrlRes
 url fileId = inPutioM $ _url fileId
+
+delete :: [Integer] -> PutioM ()
+delete fileIds = inPutioM $ _delete fileIds
