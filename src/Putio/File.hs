@@ -103,4 +103,4 @@ url :: Integer -> PutioM UrlRes
 url fileId = inPutioM $ _url fileId
 
 delete :: [Integer] -> PutioM ()
-delete fileIds = inPutioM $ _delete $ object ["file_ids" .= fileIds]
+delete fileIds = inPutioM . _delete $ object ["file_ids" .= fileIds]
