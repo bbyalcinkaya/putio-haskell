@@ -40,7 +40,7 @@ _rename :: Value -> Maybe Token -> ClientM ()
 _move :: Value -> Maybe Token -> ClientM ()
 _convertMp4 :: Integer -> Maybe Token -> ClientM ()
 _url :: Integer -> Maybe Token -> ClientM UrlRes
-_delete :: Value -> Maybe Token -> ClientM ()
+_delete :: Value -> Maybe Token -> ClientM Value
 _list ::
   Maybe Integer ->
   Maybe Integer ->
@@ -102,5 +102,5 @@ convert fileId = inPutioM $ _convertMp4 fileId
 url :: Integer -> PutioM UrlRes
 url fileId = inPutioM $ _url fileId
 
-delete :: [Integer] -> PutioM ()
+delete :: [Integer] -> PutioM Value
 delete fileIds = inPutioM . _delete $ object ["file_ids" .= fileIds]

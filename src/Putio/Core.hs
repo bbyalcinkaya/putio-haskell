@@ -31,7 +31,7 @@ runPutioM = runReaderT
 inPutioM :: (Maybe Token -> ClientM a) -> PutioM a
 inPutioM clientAction = do 
   authToken <- ask
-  liftIO $ print authToken
+  -- liftIO $ print authToken
   lift . clientAction $ Just authToken
 
 apiBaseUrl :: String
