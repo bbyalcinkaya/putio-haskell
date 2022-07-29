@@ -57,6 +57,14 @@ type Api =
       :> "mp4"
       :> AuthHeader
       :> Post '[JSON] ()
+    :<|> Capture "id" Integer
+      :> "url"
+      :> AuthHeader
+      :> Get '[JSON] UrlRes
+    :<|> "delete"
+      :> ReqBody '[JSON] [Integer]
+      :> AuthHeader
+      :> Post '[JSON] ()
 
 data SortBy
   = NAME_ASC
@@ -108,3 +116,13 @@ data SearchRes = SearchRes
 instance FromJSON SearchRes
 
 instance ToJSON SearchRes
+
+newtype UrlRes = UrlRes
+  { url :: Text
+  }
+  deriving (Show, Generic)
+
+instance FromJSON UrlRes
+
+instance ToJSON UrlRes
+
