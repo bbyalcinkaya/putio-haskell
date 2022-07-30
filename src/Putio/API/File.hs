@@ -62,9 +62,9 @@ type Api =
       :> AuthHeader
       :> Get '[JSON] UrlRes
     :<|> "delete"
-      :> ReqBody '[JSON] [Integer]
+      :> ReqBody '[JSON] Value
       :> AuthHeader
-      :> Post '[JSON] ()
+      :> Post '[JSON] Value
 
 data SortBy
   = NAME_ASC
