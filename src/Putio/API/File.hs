@@ -81,14 +81,14 @@ instance FromJSON SortBy
 
 instance ToJSON SortBy
 
-instance ToHttpApiData SortBy where 
+instance ToHttpApiData SortBy where
   toQueryParam = pack . show
 
 data ListRes = ListRes
-  { files :: [File],
-    parent :: File,
-    total :: Integer,
-    cursor :: Maybe Text
+  { lrFiles :: [File],
+    parent  :: File,
+    total   :: Integer,
+    cursor  :: Maybe Text
   }
   deriving (Show, Generic)
 
@@ -97,8 +97,8 @@ instance FromJSON ListRes
 instance ToJSON ListRes
 
 data ListContRes = ListContRes
-  { files :: [File],
-    cursor :: Text
+  { lcrFiles  :: [File],
+    cursor    :: Text
   }
   deriving (Show, Generic)
 
@@ -107,9 +107,9 @@ instance FromJSON ListContRes
 instance ToJSON ListContRes
 
 data SearchRes = SearchRes
-  { files :: [File],
-    total :: Integer,
-    cursor :: Maybe Text
+  { srFiles :: [File],
+    total   :: Integer,
+    cursor  :: Maybe Text
   }
   deriving (Show, Generic)
 
