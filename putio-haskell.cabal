@@ -1,29 +1,17 @@
-cabal-version: 1.12
+cabal-version:   3.0
+name:            putio-haskell
+version:         0.1.0.0
+license:         NONE
+author:          Fred Strauss
+maintainer:      fred@strider.co.za
+build-type:      Simple
 
--- This file has been generated from package.yaml by hpack version 0.34.4.
---
--- see: https://github.com/sol/hpack
-
-name:           putio-haskell
-version:        0.1.0.0
-description:    Please see the README on GitHub at <https://github.com/bbyalcinkaya/putio-haskell#readme>
-homepage:       https://github.com/bbyalcinkaya/putio-haskell#readme
-bug-reports:    https://github.com/bbyalcinkaya/putio-haskell/issues
-author:         Burak Bilge Yalçınkaya
-maintainer:     example@example.com
-copyright:      2022 Burak Bilge Yalçınkaya
-license:        BSD3
-license-file:   LICENSE
-build-type:     Simple
-extra-source-files:
-    README.md
-    ChangeLog.md
-
-source-repository head
-  type: git
-  location: https://github.com/bbyalcinkaya/putio-haskell
+common warnings
+    ghc-options: -Wall
 
 library
+  hs-source-dirs: src
+  build-depends:  base, aeson, http-client, http-client-tls, mtl, servant, servant-client, text, time
   exposed-modules:
       Putio
       Putio.Account
@@ -39,59 +27,3 @@ library
       Putio.Data.Wrap
       Putio.File
       Putio.Transfer
-  other-modules:
-      Paths_putio_haskell
-  hs-source-dirs:
-      src
-  build-depends:
-      aeson
-    , base >=4.7 && <5
-    , http-client
-    , http-client-tls
-    , mtl
-    , servant
-    , servant-client
-    , text
-    , time
-  default-language: Haskell2010
-
-executable putio-haskell-exe
-  main-is: Main.hs
-  other-modules:
-      Paths_putio_haskell
-  hs-source-dirs:
-      app
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      aeson
-    , base >=4.7 && <5
-    , http-client
-    , http-client-tls
-    , mtl
-    , putio-haskell
-    , servant
-    , servant-client
-    , text
-    , time
-  default-language: Haskell2010
-
-test-suite putio-haskell-test
-  type: exitcode-stdio-1.0
-  main-is: Spec.hs
-  other-modules:
-      Paths_putio_haskell
-  hs-source-dirs:
-      test
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      aeson
-    , base >=4.7 && <5
-    , http-client
-    , http-client-tls
-    , mtl
-    , putio-haskell
-    , servant
-    , servant-client
-    , text
-    , time
-  default-language: Haskell2010
